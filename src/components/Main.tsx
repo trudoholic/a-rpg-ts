@@ -1,24 +1,25 @@
-import {Heading, HStack} from "@chakra-ui/react"
-import {RiArrowLeftSFill, RiArrowRightSFill} from "react-icons/ri"
+import {Heading, HStack, SimpleGrid} from "@chakra-ui/react"
 import useGame from "../hooks/useGame"
 import ArrowButton from "./ArrowButton"
 
 const Main = () => {
   const {
     count,
-    incCount,
-    decCount,
+    // incCount,
+    // decCount,
   } = useGame()
 
   return (
     <>
       <HStack>
-        <ArrowButton
-          onClick={() => decCount(1)}
-        ><RiArrowLeftSFill /></ArrowButton>
-        <ArrowButton
-          onClick={() => incCount(1)}
-        ><RiArrowRightSFill /></ArrowButton>
+        <SimpleGrid columns={3} gap="1px">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
+              <ArrowButton
+                  id={n - 1}
+                  // onClick={() => ((n % 2)? incCount(1): decCount(1))}
+              />
+          ))}
+        </SimpleGrid>
         <Heading as="h1">
           count is {count}
         </Heading>

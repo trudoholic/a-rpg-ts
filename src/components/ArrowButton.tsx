@@ -1,12 +1,24 @@
-import {ReactNode} from "react"
 import {Button} from "@chakra-ui/react"
+import {
+    RiArrowLeftUpFill, RiArrowUpFill, RiArrowRightUpFill,
+    RiArrowLeftFill, RiCrosshair2Line, RiArrowRightFill,
+    RiArrowLeftDownFill, RiArrowDownFill, RiArrowRightDownFill,
+} from "react-icons/ri"
 
-const ArrowButton = ({children}:{children: ReactNode}) => {
+const Arrows = [
+    <RiArrowLeftUpFill />, <RiArrowUpFill />, <RiArrowRightUpFill />,
+    <RiArrowLeftFill />, <RiCrosshair2Line />, <RiArrowRightFill />,
+    <RiArrowLeftDownFill />, <RiArrowDownFill />, <RiArrowRightDownFill />,
+]
+
+const ArrowButton = ({id}:{id: number}) => {
     return (
         <Button
-            colorPalette={"pink"}
+            colorPalette={"green"}
+            size="xs" w="2rem" h="2rem"
+            onClick={() => console.log('->', id)}
         >
-            {children}
+            {Arrows[id]}
         </Button>
     )
 }
