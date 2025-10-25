@@ -1,6 +1,7 @@
-import {Button, Heading, HStack} from "@chakra-ui/react"
+import {Heading, HStack} from "@chakra-ui/react"
 import {RiArrowLeftSFill, RiArrowRightSFill} from "react-icons/ri"
 import useGame from "../hooks/useGame"
+import ArrowButton from "./ArrowButton"
 
 const Main = () => {
   const {
@@ -12,14 +13,12 @@ const Main = () => {
   return (
     <>
       <HStack>
-        <Button
-          colorPalette={"orange"}
+        <ArrowButton
           onClick={() => decCount(1)}
-        ><RiArrowLeftSFill /></Button>
-        <Button
-          colorPalette={"orange"}
+        ><RiArrowLeftSFill /></ArrowButton>
+        <ArrowButton
           onClick={() => incCount(1)}
-        ><RiArrowRightSFill /></Button>
+        ><RiArrowRightSFill /></ArrowButton>
         <Heading as="h1">
           count is {count}
         </Heading>
