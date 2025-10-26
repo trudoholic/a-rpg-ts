@@ -19,8 +19,12 @@ const useGame = () => {
   }
 
   const worldMove = (id: number) => {
-    console.log('->', id)
-    dispatch({type: Actions.WorldMove, payload: {x: 1, y: 1}})
+    const XY = [
+        [-1, -1], [ 0, -1], [ 1, -1],
+        [-1,  0], [ 0,  0], [ 1,  0],
+        [-1,  1], [ 0,  1], [ 1,  1],
+    ]
+    dispatch({type: Actions.WorldMove, payload: {x: XY[id][0], y: XY[id][1]}})
   }
 
   return {
