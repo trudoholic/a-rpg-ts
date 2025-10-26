@@ -1,6 +1,7 @@
 import {Heading, HStack, SimpleGrid} from "@chakra-ui/react"
 import ArrowButton from "./ArrowButton"
 import useGame from "../hooks/useGame"
+import WorldGrid from "./WorldGrid"
 
 const Main = () => {
   const {
@@ -22,9 +23,14 @@ const Main = () => {
               />
           ))}
         </SimpleGrid>
+      </HStack>
+      <HStack>
         <Heading as="h1">
           count is {count} X: {worldX} Y: {worldY}
         </Heading>
+      </HStack>
+      <HStack>
+        <WorldGrid/>
       </HStack>
     </>
   )

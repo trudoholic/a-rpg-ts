@@ -19,7 +19,7 @@ const ArrowButton = ({id}:{id: number}) => {
 
     return (
         <Button
-            colorPalette={"green"}
+            colorPalette={"teal"}
             size="xs" w="2rem" h="2rem"
             onClick={() => worldMove(id)}
         >
