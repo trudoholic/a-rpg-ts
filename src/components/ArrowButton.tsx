@@ -4,6 +4,7 @@ import {
     RiArrowLeftFill, RiCrosshair2Line, RiArrowRightFill,
     RiArrowLeftDownFill, RiArrowDownFill, RiArrowRightDownFill,
 } from "react-icons/ri"
+import useGame from "../hooks/useGame"
 
 const Arrows = [
     <RiArrowLeftUpFill />, <RiArrowUpFill />, <RiArrowRightUpFill />,
@@ -12,11 +13,15 @@ const Arrows = [
 ]
 
 const ArrowButton = ({id}:{id: number}) => {
+    const {
+        worldMove,
+    } = useGame()
+
     return (
         <Button
             colorPalette={"green"}
             size="xs" w="2rem" h="2rem"
-            onClick={() => console.log('->', id)}
+            onClick={() => worldMove(id)}
         >
             {Arrows[id]}
         </Button>
