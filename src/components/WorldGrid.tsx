@@ -13,15 +13,20 @@ const WorldGrid = () => {
     const {
         worldX,
         worldY,
+        getWorldMap,
     } = useGame()
 
     return (
         <SimpleGrid columns={Cols} gap="1px">
             {range(Rows * Cols).map(n => (
                 <WorldTile
-                    row={row(n) - halfRows + worldX}
-                    col={col(n) - halfCols + worldY}
+                    row={row(n) - halfRows + worldY}
+                    col={col(n) - halfCols + worldX}
                     center={row(n) === halfRows && col(n) === halfCols}
+                    tile={getWorldMap(
+                        row(n) - halfRows + worldY,
+                        col(n) - halfCols + worldX
+                    )}
                 />
             ))}
         </SimpleGrid>

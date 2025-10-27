@@ -4,16 +4,17 @@ interface IWorldTile  {
     row: number
     col: number
     center: boolean
+    tile: string
 }
 
 const WorldTile = (props: IWorldTile) => {
-    const {row, col, center} = props
+    const {row, col, center, tile} = props
 
     return (
         <Center
             w="40px" h="40px"
-            bg={center? "green.400": "green.600"}
-            color="white"
+            bg={tile? "pink.400": "green.600"}
+            color={center? "white": "green.300"}
         >
             {`${row}:${col}`}
         </Center>
