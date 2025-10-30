@@ -13,7 +13,7 @@ const useGame = () => {
   } = state as IState
 
   useEffect(() => {
-    setWorldMap(0, 0, '1')
+    setWorldMap(0, 0, '0')
   }, [])
 
   const incCount = (n: number) => {
@@ -45,7 +45,7 @@ const useGame = () => {
       const rnd1 = ~~(6 * Math.random() + 1)
       const rnd2 = ~~(6 * Math.random() + 1)
       const rnd = rnd1 + rnd2
-      console.log(rnd)
+      // console.log(rnd)
       setWorldMap(worldY + dy, worldX + dx, `${rnd}`)
     }
     dispatch({type: Actions.WorldMove, payload: {x: dx, y: dy}})

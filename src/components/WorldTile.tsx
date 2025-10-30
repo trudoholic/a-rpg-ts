@@ -1,5 +1,20 @@
 import {Center} from "@chakra-ui/react"
 
+import {
+    LuGoal,
+} from "react-icons/lu"
+
+const icons = {
+    ['0']: <LuGoal />,
+}
+
+function getColor(n: number) {
+    // gray:red:pink:purple:blue:cyan:teal:green:yellow:orange
+    if (0 === n) return "green.800"
+    if (7 === n) return "yellow.600"
+    return "green.600"
+}
+
 interface IWorldTile  {
     row: number
     col: number
@@ -12,7 +27,7 @@ const WorldTile = (props: IWorldTile) => {
         // row, col,
         center, tile
     } = props
-    const tileColor = tile? "green.600": "green.900"
+    const tileColor = tile? getColor(+tile): "green.900"
 
     return (
         <Center
@@ -24,7 +39,7 @@ const WorldTile = (props: IWorldTile) => {
               bg={tileColor}
             >
                 {/*{`${row}:${col}`}*/}
-                {`${tile}`}
+                {icons[tile] ?? `${tile}`}
             </Center>
         </Center>
     )
