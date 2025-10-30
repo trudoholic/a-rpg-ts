@@ -8,15 +8,24 @@ interface IWorldTile  {
 }
 
 const WorldTile = (props: IWorldTile) => {
-    const {row, col, center, tile} = props
+    const {
+        // row, col,
+        center, tile
+    } = props
+    const tileColor = tile? "green.600": "green.900"
 
     return (
         <Center
-            w="40px" h="40px"
-            bg={tile? "pink.400": "green.600"}
-            color={center? "white": "green.300"}
+            w="48px" h="48px"
+            bg={center? "yellow.300": tileColor}
         >
-            {`${row}:${col}`}
+            <Center
+              w="40px" h="40px"
+              bg={tileColor}
+            >
+                {/*{`${row}:${col}`}*/}
+                {`${tile}`}
+            </Center>
         </Center>
     )
 }
