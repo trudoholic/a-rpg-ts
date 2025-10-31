@@ -3,14 +3,22 @@ import ArrowButton from "./ArrowButton"
 import useGame from "../hooks/useGame"
 import WorldGrid from "./WorldGrid"
 
+import {
+  GameStat,
+} from "../data/GameStats"
+
 const Main = () => {
   const {
     count,
     worldX,
     worldY,
+    gameStats,
     // incCount,
     // decCount,
   } = useGame()
+
+  const TX = (n:number) => `${n < 0? 'W: ': n > 0? 'E: ' : ''}${Math.abs(n)}`
+  const TY = (n:number) => `${n < 0? 'N: ': n > 0? 'S: ' : ''}${Math.abs(n)}`
 
   return (
     <>
@@ -26,7 +34,10 @@ const Main = () => {
       </HStack>
       <HStack>
         <Heading as="h1">
-          count is {count} X: {worldX} Y: {worldY}
+          count is {count} [ {TX(worldX)} {TY(worldY)} ]
+        </Heading>
+        <Heading as="h1">
+          Tiles: {gameStats[GameStat.OpenTile]} Sites: {gameStats[GameStat.OpenSite]}
         </Heading>
       </HStack>
       <HStack>
