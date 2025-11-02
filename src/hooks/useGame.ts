@@ -1,7 +1,8 @@
-import {useEffect} from "react"
+// import {useEffect} from "react"
 import useAppContext from "../context/useAppContext"
 import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
+import {tileKey} from "../data/WorldTiles"
 import {type TGameStatK, GameStat} from "../data/GameStats"
 
 const useGame = () => {
@@ -14,9 +15,9 @@ const useGame = () => {
     gameStats,
   } = state as IState
 
-  useEffect(() => {
-    setWorldMap(0, 0, '0')
-  }, [])
+  // useEffect(() => {
+  //   setWorldMap(0, 0, '0')
+  // }, [])
 
   const incCount = (n: number) => {
     dispatch({type: Actions.SetCount, payload: count + n})
@@ -27,11 +28,11 @@ const useGame = () => {
   }
 
   function getWorldMap(row: number, col: number) {
-    return worldMap[`${row}:${col}`] ?? ""
+    return worldMap[tileKey(row, col)] ?? ""
   }
 
   function setWorldMap(row: number, col: number, value: string) {
-    dispatch({type: Actions.SetWorldMap, payload: {key: `${row}:${col}`, value}})
+    dispatch({type: Actions.SetWorldMap, payload: {key: tileKey(row, col), value}})
   }
 
   const worldMove = (id: number) => {
