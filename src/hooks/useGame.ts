@@ -26,11 +26,11 @@ const useGame = () => {
   }
 
   function getWorldMap(row: number, col: number) {
-    return getTile(worldMap, row, col).terrain
+    return getTile(worldMap, row, col)
   }
 
-  function setWorldMap(row: number, col: number, terrain: string) {
-    dispatch({type: Actions.SetWorldMap, payload: setTile(row, col, terrain)})
+  function setWorldMap(row: number, col: number, terrain: string, site: string) {
+    dispatch({type: Actions.SetWorldMap, payload: setTile(row, col, terrain, site)})
   }
 
   const worldMove = (id: number) => {
@@ -40,8 +40,8 @@ const useGame = () => {
         [-1,  1], [ 0,  1], [ 1,  1],
     ]
     const dx = XY[id][0], dy = XY[id][1]
-    const tile = getWorldMap(worldY + dy, worldX + dx)
-    if (!tile) {
+    const terrain = getWorldMap(worldY + dy, worldX + dx).terrain
+    if (!terrain) {
       incCount(1)
       incGameStat(GameStat.OpenTile)
       const rnd1 = ~~(6 * Math.random() + 1)
@@ -52,7 +52,7 @@ const useGame = () => {
       if (7 === rnd) {
         incGameStat(GameStat.OpenSite)
       }
-      setWorldMap(worldY + dy, worldX + dx, `${rnd}`)
+      setWorldMap(worldY + dy, worldX + dx, `${rnd}`, (7 === rnd? "1": ""))
     }
     dispatch({type: Actions.WorldMove, payload: {x: dx, y: dy}})
   }

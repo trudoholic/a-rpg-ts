@@ -16,18 +16,21 @@ function getColor(n: number) {
 }
 
 interface IWorldTile  {
-    row: number
-    col: number
+    // row: number
+    // col: number
     center: boolean
-    tile: string
+    terrain: string
+    site: string
 }
 
 const WorldTile = (props: IWorldTile) => {
     const {
         // row, col,
-        center, tile
+        center,
+        terrain,
+        site,
     } = props
-    const tileColor = tile? getColor(+tile): "green.900"
+    const tileColor = terrain? getColor(+terrain): "green.900"
 
     return (
         <Center
@@ -39,7 +42,7 @@ const WorldTile = (props: IWorldTile) => {
               bg={tileColor}
             >
                 {/*{`${row}:${col}`}*/}
-                {icons[tile] ?? `${tile}`}
+                {icons[site] ?? `${terrain}`}
             </Center>
         </Center>
     )

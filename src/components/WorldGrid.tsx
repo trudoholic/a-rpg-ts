@@ -16,20 +16,26 @@ const WorldGrid = () => {
         getWorldMap,
     } = useGame()
 
+    const tileProps = (n: number) => {
+        const tile = getWorldMap(
+          row(n) - halfRows + worldY,
+          col(n) - halfCols + worldX
+        )
+        return {
+            center: (row(n) === halfRows && col(n) === halfCols),
+            terrain: tile.terrain,
+            site: tile.site,
+        }
+    }
+
     return (
-        <SimpleGrid columns={Cols} gap="1px">
-            {range(Rows * Cols).map(n => (
-                <WorldTile
-                    row={row(n) - halfRows + worldY}
-                    col={col(n) - halfCols + worldX}
-                    center={row(n) === halfRows && col(n) === halfCols}
-                    tile={getWorldMap(
-                        row(n) - halfRows + worldY,
-                        col(n) - halfCols + worldX
-                    )}
-                />
-            ))}
-        </SimpleGrid>
+      <SimpleGrid columns={Cols} gap="1px">
+          {range(Rows * Cols).map(n => (
+            <WorldTile
+              {...tileProps(n)}
+            />
+          ))}
+      </SimpleGrid>
     )
 }
 
