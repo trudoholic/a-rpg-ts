@@ -1,9 +1,6 @@
 import {type IState} from "./state"
-
-import {
-  type TGameStatK,
-  type TGameStatV,
-} from "../data/GameStats"
+import {type TGameStatK, type TGameStatV} from "../data/GameStats"
+import {type TWorldK, type TWorldV} from "../data/WorldTiles"
 
 export const Actions = {
   SetCount: 'SetCount',
@@ -15,7 +12,7 @@ export const Actions = {
 export type TAction =
   | { type: 'SetCount', payload: number }
   | { type: 'SetGameStat', payload: {key: TGameStatK, value: TGameStatV} }
-  | { type: 'SetWorldMap', payload: {key: string, value: string} }
+  | { type: 'SetWorldMap', payload: {key: TWorldK, value: TWorldV} }
   | { type: 'WorldMove', payload: {x: number, y: number} }
 
 export const reducer = (state: IState, action: TAction): IState => {

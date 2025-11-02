@@ -1,5 +1,5 @@
-import {type TWorld, initWorld} from "../data/WorldTiles"
 import {type TGameStats, initGameStats} from "../data/GameStats"
+import {type TWorld, initWorld} from "../data/WorldTiles"
 
 export interface IState {
   count: number
