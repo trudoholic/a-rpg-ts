@@ -1,20 +1,12 @@
+import {JSX} from "react"
 import {Center} from "@chakra-ui/react"
-
-import {
-    LuGoal,
-} from "react-icons/lu"
-
-const icons = {
-    ['0']: <LuGoal />,
-}
 
 interface IWorldTile  {
     // row: number
     // col: number
     center: boolean
-    terrain: string
-    site: string
     color: string
+    icon: JSX.Element | string
 }
 export type TWorldTile = IWorldTile
 
@@ -22,9 +14,8 @@ const WorldTile = (props: IWorldTile) => {
     const {
         // row, col,
         center,
-        terrain,
-        site,
         color,
+        icon,
     } = props
 
     return (
@@ -37,7 +28,7 @@ const WorldTile = (props: IWorldTile) => {
               bg={color}
             >
                 {/*{`${row}:${col}`}*/}
-                {icons[site] ?? `${terrain}`}
+                {icon}
             </Center>
         </Center>
     )
