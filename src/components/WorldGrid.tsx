@@ -1,6 +1,7 @@
 import {SimpleGrid} from "@chakra-ui/react"
-import WorldTile from "./WorldTile"
+import WorldTile, {type TWorldTile} from "./WorldTile"
 import useGame from "../hooks/useGame"
+import {getColor} from "../data/TileColor"
 
 const halfRows = 5, halfCols = 5
 const Rows = halfRows + 1 + halfRows, Cols = halfCols + 1 + halfCols
@@ -16,7 +17,7 @@ const WorldGrid = () => {
         getWorldMap,
     } = useGame()
 
-    const tileProps = (n: number) => {
+    const tileProps = (n: number):TWorldTile => {
         const tile = getWorldMap(
           row(n) - halfRows + worldY,
           col(n) - halfCols + worldX
@@ -25,6 +26,7 @@ const WorldGrid = () => {
             center: (row(n) === halfRows && col(n) === halfCols),
             terrain: tile.terrain,
             site: tile.site,
+            color: getColor(tile),
         }
     }
 

@@ -8,20 +8,15 @@ const icons = {
     ['0']: <LuGoal />,
 }
 
-function getColor(n: number) {
-    // gray:red:pink:purple:blue:cyan:teal:green:yellow:orange
-    if (0 === n) return "green.800"
-    if (7 === n) return "yellow.600"
-    return "green.600"
-}
-
 interface IWorldTile  {
     // row: number
     // col: number
     center: boolean
     terrain: string
     site: string
+    color: string
 }
+export type TWorldTile = IWorldTile
 
 const WorldTile = (props: IWorldTile) => {
     const {
@@ -29,17 +24,17 @@ const WorldTile = (props: IWorldTile) => {
         center,
         terrain,
         site,
+        color,
     } = props
-    const tileColor = terrain? getColor(+terrain): "green.900"
 
     return (
         <Center
             w="48px" h="48px"
-            bg={center? "yellow.300": tileColor}
+            bg={center? "yellow.300": color}
         >
             <Center
               w="40px" h="40px"
-              bg={tileColor}
+              bg={color}
             >
                 {/*{`${row}:${col}`}*/}
                 {icons[site] ?? `${terrain}`}
