@@ -33,6 +33,11 @@ const useGame = () => {
     dispatch({type: Actions.SetWorldMap, payload: setTile(row, col, terrain, site)})
   }
 
+  const range = (n: number) => Array.from(Array(n).keys())
+  const sum = (a: number[]) => a.reduce((s, i) => s + i, 0)
+  const rnd = (n: number) => ~~(n * Math.random() + 1)
+  const mRndN = (m: number, n: number) => sum(range(m).map(_ => rnd(n)))
+
   const worldMove = (id: number) => {
     const XY = [
         [-1, -1], [ 0, -1], [ 1, -1],
@@ -44,15 +49,13 @@ const useGame = () => {
     if (!terrain) {
       incCount(1)
       incGameStat(GameStat.OpenTile)
-      const rnd1 = ~~(6 * Math.random() + 1)
-      const rnd2 = ~~(6 * Math.random() + 1)
-      const rnd = rnd1 + rnd2
-      // console.log(rnd)
+      const rndN = mRndN(2, 6)
+      // console.log(rndN)
 
-      if (7 === rnd) {
+      if (7 === rndN) {
         incGameStat(GameStat.OpenSite)
       }
-      setWorldMap(worldY + dy, worldX + dx, `${rnd}`, (7 === rnd? "1": ""))
+      setWorldMap(worldY + dy, worldX + dx, `${rndN}`, (7 === rndN? `${rnd(6)}`: ""))
     }
     dispatch({type: Actions.WorldMove, payload: {x: dx, y: dy}})
   }
