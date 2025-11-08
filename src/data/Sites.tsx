@@ -1,5 +1,3 @@
-import {rnd} from "./Utils"
-
 export type TSiteK = string
 
 export type TSiteV = {
@@ -16,7 +14,6 @@ export const createSite = (kind: number):TSiteV => (
   {
     id: `${ ++siteCnt }`,
     kind: `${ kind }`,
-    // kind: `${ rnd(6) }`,
     stance: "Enemy",
   }
 )
