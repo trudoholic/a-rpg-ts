@@ -5,6 +5,9 @@ import {type IState} from "../context/state"
 import {type TGameStatK, GameStat} from "../data/GameStats"
 import {getTile, setTile} from "../data/WorldTiles"
 import {createSite} from "../data/Sites"
+import useShuffleBag from "./useShuffleBag"
+import {Dice2} from "../data/Utils"
+
 
 const useGame = () => {
   const { state, dispatch } = useAppContext()
@@ -35,10 +38,7 @@ const useGame = () => {
     dispatch({type: Actions.SetWorldMap, payload: setTile(row, col, terrain, site)})
   }
 
-  const range = (n: number) => Array.from(Array(n).keys())
-  const sum = (a: number[]) => a.reduce((s, i) => s + i, 0)
-  const rnd = (n: number) => ~~(n * Math.random() + 1)
-  const mRndN = (m: number, n: number) => sum(range(m).map(_ => rnd(n)))
+  const {next: next2D6} = useShuffleBag(Dice2(6))
 
   const worldMove = (id: number) => {
     const XY = [
@@ -51,19 +51,16 @@ const useGame = () => {
     if (!terrain) {
       incCount(1)
       incGameStat(GameStat.OpenTile)
-      const rndN = mRndN(2, 6)
-      // console.log(rndN)
+      const rnd2D6 = next2D6()
 
       let siteId = ""
-      if (7 === rndN) {
+      if (7 === rnd2D6) {
         incGameStat(GameStat.OpenSite)
-        // siteId = `${rnd(6)}`
-
         const site = createSite()
         dispatch({type: Actions.SetSite, payload: {key: site.id, value: site}})
         siteId = site.id
       }
-      setWorldMap(worldY + dy, worldX + dx, `${rndN}`, siteId)
+      setWorldMap(worldY + dy, worldX + dx, `${rnd2D6}`, siteId)
     }
     if (!dx && !dy) {
       dispatch({type: Actions.WorldTP, payload: {x: dx, y: dy}})

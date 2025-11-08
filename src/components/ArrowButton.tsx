@@ -4,7 +4,6 @@ import {
     RiArrowLeftFill, RiCrosshair2Line, RiArrowRightFill,
     RiArrowLeftDownFill, RiArrowDownFill, RiArrowRightDownFill,
 } from "react-icons/ri"
-import useGame from "../hooks/useGame"
 
 const Arrows = [
     <RiArrowLeftUpFill />, <RiArrowUpFill />, <RiArrowRightUpFill />,
@@ -12,16 +11,18 @@ const Arrows = [
     <RiArrowLeftDownFill />, <RiArrowDownFill />, <RiArrowRightDownFill />,
 ]
 
-const ArrowButton = ({id}:{id: number}) => {
-    const {
-        worldMove,
-    } = useGame()
+interface IArrowButton  {
+    id: number
+    cb: (id: number) => void
+}
 
+const ArrowButton = (props: IArrowButton) => {
+    const {id, cb} = props
     return (
         <Button
             colorPalette={"teal"}
             size="xs" w="2rem" h="2rem"
-            onClick={() => worldMove(id)}
+            onClick={() => cb(id)}
         >
             {Arrows[id]}
         </Button>

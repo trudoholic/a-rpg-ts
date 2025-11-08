@@ -13,8 +13,7 @@ const Main = () => {
     worldX,
     worldY,
     gameStats,
-    // incCount,
-    // decCount,
+    worldMove,
   } = useGame()
 
   const TX = (n:number) => `${n < 0? 'W: ': n > 0? 'E: ' : ''}${Math.abs(n)}`
@@ -27,7 +26,7 @@ const Main = () => {
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
               <ArrowButton
                   id={n - 1}
-                  // onClick={() => ((n % 2)? incCount(1): decCount(1))}
+                  cb={worldMove}
               />
           ))}
         </SimpleGrid>
