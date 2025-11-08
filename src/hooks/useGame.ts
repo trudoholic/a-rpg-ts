@@ -6,7 +6,7 @@ import {type TGameStatK, GameStat} from "../data/GameStats"
 import {getTile, setTile} from "../data/WorldTiles"
 import {createSite} from "../data/Sites"
 import useShuffleBag from "./useShuffleBag"
-import {Dice2} from "../data/Utils"
+import {Dice, Dice2} from "../data/Utils"
 
 
 const useGame = () => {
@@ -38,6 +38,7 @@ const useGame = () => {
     dispatch({type: Actions.SetWorldMap, payload: setTile(row, col, terrain, site)})
   }
 
+  const {next: next1D6} = useShuffleBag(Dice(6))
   const {next: next2D6} = useShuffleBag(Dice2(6))
 
   const worldMove = (id: number) => {
@@ -56,7 +57,7 @@ const useGame = () => {
       let siteId = ""
       if (7 === rnd2D6) {
         incGameStat(GameStat.OpenSite)
-        const site = createSite()
+        const site = createSite(next1D6())
         dispatch({type: Actions.SetSite, payload: {key: site.id, value: site}})
         siteId = site.id
       }

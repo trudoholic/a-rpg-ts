@@ -12,10 +12,11 @@ export type TSites = {[key: TSiteK]: TSiteV}
 
 let siteCnt = 0
 
-export const createSite = ():TSiteV => (
+export const createSite = (kind: number):TSiteV => (
   {
     id: `${ ++siteCnt }`,
-    kind: `${ rnd(6) }`,
+    kind: `${ kind }`,
+    // kind: `${ rnd(6) }`,
     stance: "Enemy",
   }
 )
