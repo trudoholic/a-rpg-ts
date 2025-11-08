@@ -4,15 +4,17 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 import {type TGameStatK, GameStat} from "../data/GameStats"
 import {getTile, setTile} from "../data/WorldTiles"
+import {createSite} from "../data/Sites"
 
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
     count,
+    gameStats,
     worldX,
     worldY,
     worldMap,
-    gameStats,
+    sites,
   } = state as IState
 
   // useEffect(() => {setWorldMap(0, 0, '0')}, [])
@@ -55,7 +57,11 @@ const useGame = () => {
       let siteId = ""
       if (7 === rndN) {
         incGameStat(GameStat.OpenSite)
-        siteId = `${rnd(6)}`
+        // siteId = `${rnd(6)}`
+
+        const site = createSite()
+        dispatch({type: Actions.SetSite, payload: {key: site.id, value: site}})
+        siteId = site.id
       }
       setWorldMap(worldY + dy, worldX + dx, `${rndN}`, siteId)
     }
@@ -76,9 +82,10 @@ const useGame = () => {
   return {
     // State:
     count,
+    gameStats,
     worldX,
     worldY,
-    gameStats,
+    sites,
     // Actions:
     incCount,
     decCount,

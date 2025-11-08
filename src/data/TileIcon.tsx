@@ -1,6 +1,7 @@
 /** https://react-icons.github.io/react-icons/ */
 import {JSX} from "react"
 import {type TWorldV} from "./WorldTiles"
+import {type TSiteV} from "./Sites"
 
 import {
   LuGoal,
@@ -21,6 +22,6 @@ const icons = {
   ['6']: <RiNumber6 />,
 }
 
-export function getIcon(tile: TWorldV): JSX.Element | string {
-  return icons[tile.site] ?? `${tile.terrain}`
+export function getIcon(tile: TWorldV, site: TSiteV): JSX.Element | string {
+  return icons[site.kind] ?? `${tile.terrain}`
 }

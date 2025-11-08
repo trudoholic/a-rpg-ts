@@ -1,6 +1,6 @@
 import {type TGameStats, initGameStats} from "../data/GameStats"
 import {type TWorld, initWorld} from "../data/WorldTiles"
-import {type TSites} from "../data/Sites"
+import {type TSites, initSites} from "../data/Sites"
 
 export interface IState {
   count: number
@@ -17,5 +17,5 @@ export const defaultState: IState = {
   worldX: 0,
   worldY: 0,
   worldMap: initWorld,
-  sites: {},
+  sites: initSites,
 }

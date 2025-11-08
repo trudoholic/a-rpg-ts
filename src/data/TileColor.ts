@@ -1,8 +1,9 @@
 /** gray:red:pink:purple:blue:cyan:teal:green:yellow:orange */
 import {type TWorldV} from "./WorldTiles"
+import {type TSiteV} from "./Sites"
 
-export function getColor(tile: TWorldV) {
-  if (tile.site) return [
+export function getColor(tile: TWorldV, site: TSiteV) {
+  if (site.kind) return [
     "green.800", // 0
     "pink.600", // 1
     "orange.600", // 2
@@ -10,6 +11,6 @@ export function getColor(tile: TWorldV) {
     "cyan.600", // 4
     "blue.600", // 5
     "purple.600", // 6
-  ][+tile.site] ?? "gray.500"
+  ][+site.kind] ?? "gray.500"
   return tile.terrain? "green.600": "green.900"
 }

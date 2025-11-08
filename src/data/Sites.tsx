@@ -19,3 +19,21 @@ export const createSite = ():TSiteV => (
     stance: "Enemy",
   }
 )
+
+export const nullSite:TSiteV = {
+  id: "",
+  kind: "",
+  stance: "",
+}
+
+export const getSite = (sites: TSites, key: TSiteK):TSiteV => (
+  sites[key] ?? nullSite
+)
+
+export const initSites: TSites = {
+  ["0"]: {
+    id: "0",
+    kind: "0",
+    stance: "Player",
+  },
+}
