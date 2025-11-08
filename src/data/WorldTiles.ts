@@ -1,6 +1,6 @@
 export type TWorldK = string
 
-export interface TWorldV {
+export type TWorldV = {
   terrain: string
   site: string
 }
