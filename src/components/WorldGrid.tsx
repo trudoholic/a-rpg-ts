@@ -2,7 +2,7 @@ import {SimpleGrid} from "@chakra-ui/react"
 import WorldTile, {type TWorldTile} from "./WorldTile"
 import useGame from "../hooks/useGame"
 import {getSite} from "../data/Sites"
-import {getColor} from "../data/TileColor"
+import {getBorder, getColor} from "../data/TileColor"
 import {getIcon} from "../data/TileIcon"
 
 const halfRows = 5, halfCols = 5
@@ -11,6 +11,7 @@ const Rows = halfRows + 1 + halfRows, Cols = halfCols + 1 + halfCols
 const range = (n: number) => Array.from(Array(n).keys())
 const row = (n: number) => ~~(n / Cols)
 const col = (n: number) => n % Cols
+const center = (n: number) => (row(n) === halfRows && col(n) === halfCols)
 
 const WorldGrid = () => {
     const {
@@ -21,16 +22,15 @@ const WorldGrid = () => {
     } = useGame()
 
     const tileProps = (n: number):TWorldTile => {
-        const tile = getWorldMap(
-          row(n) - halfRows + worldY,
-          col(n) - halfCols + worldX
-        )
-
+        const tileR = row(n) - halfRows + worldY
+        const tileC = col(n) - halfCols + worldX
+        const tile = getWorldMap(tileR, tileC)
         const site = getSite(sites, tile.site)
 
         return {
-            center: (row(n) === halfRows && col(n) === halfCols),
+            border: center(n)? "yellow.300": getBorder(tile, site),
             color: getColor(tile, site),
+            hint: `${tileR}:${tileC}`,
             icon: getIcon(tile, site),
         }
     }
