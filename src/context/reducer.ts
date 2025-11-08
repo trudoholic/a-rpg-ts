@@ -9,6 +9,7 @@ export const Actions = {
   SetSite: 'SetSite',
   SetWorldMap: 'SetWorldMap',
   WorldMove: 'WorldMove',
+  WorldTP: 'WorldTP',
 } as const
 
 export type TAction =
@@ -17,6 +18,7 @@ export type TAction =
   | { type: 'SetSite', payload: {key: TSiteK, value: TSiteV} }
   | { type: 'SetWorldMap', payload: {key: TWorldK, value: TWorldV} }
   | { type: 'WorldMove', payload: {x: number, y: number} }
+  | { type: 'WorldTP', payload: {x: number, y: number} }
 
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {
@@ -39,6 +41,10 @@ export const reducer = (state: IState, action: TAction): IState => {
     case Actions.WorldMove: {
       const ap = action.payload
       return { ...state, worldX: state.worldX + ap.x, worldY: state.worldY + ap.y }
+    }
+    case Actions.WorldTP: {
+      const ap = action.payload
+      return { ...state, worldX: ap.x, worldY: ap.y }
     }
     default: {
       return state

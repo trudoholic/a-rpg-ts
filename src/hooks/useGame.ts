@@ -52,12 +52,19 @@ const useGame = () => {
       const rndN = mRndN(2, 6)
       // console.log(rndN)
 
+      let siteId = ""
       if (7 === rndN) {
         incGameStat(GameStat.OpenSite)
+        siteId = `${rnd(6)}`
       }
-      setWorldMap(worldY + dy, worldX + dx, `${rndN}`, (7 === rndN? `${rnd(6)}`: ""))
+      setWorldMap(worldY + dy, worldX + dx, `${rndN}`, siteId)
     }
-    dispatch({type: Actions.WorldMove, payload: {x: dx, y: dy}})
+    if (!dx && !dy) {
+      dispatch({type: Actions.WorldTP, payload: {x: dx, y: dy}})
+    }
+    else {
+      dispatch({type: Actions.WorldMove, payload: {x: dx, y: dy}})
+    }
   }
 
   const incGameStat = (key: TGameStatK, n: number = 1) => {
@@ -67,11 +74,12 @@ const useGame = () => {
   }
 
   return {
+    // State:
     count,
     worldX,
     worldY,
     gameStats,
-    //
+    // Actions:
     incCount,
     decCount,
     getWorldMap,
