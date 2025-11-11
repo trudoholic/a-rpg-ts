@@ -1,17 +1,17 @@
-import {ChakraProvider, defaultSystem, Container} from "@chakra-ui/react"
+import {ChakraProvider, defaultSystem, Box} from "@chakra-ui/react"
 
 import Main from "./Main"
 
 function Layout() {
   return (
     <ChakraProvider value={defaultSystem}>
-      <Container
+      <Box
         color={"white"}
         bg={"teal.500"}
-        p={4}
+        w="dvw" h="dvh"
       >
         <Main/>
-      </Container>
+      </Box>
     </ChakraProvider>
   )
 }
