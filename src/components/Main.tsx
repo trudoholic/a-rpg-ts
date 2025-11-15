@@ -1,4 +1,4 @@
-import {Box, Heading, HStack, SimpleGrid, VStack} from "@chakra-ui/react"
+import {Box, Button, Heading, HStack, SimpleGrid, VStack} from "@chakra-ui/react"
 import ArrowButton from "./ArrowButton"
 import useGame from "../hooks/useGame"
 import WorldGrid from "./WorldGrid"
@@ -13,6 +13,7 @@ const Main = () => {
     worldX,
     worldY,
     gameStats,
+    heroSite,
     worldMove,
   } = useGame()
 
@@ -22,7 +23,7 @@ const Main = () => {
   return (
     <>
       <Box
-        position="fixed" w="200px" h="100vh" p={4} bg="green.900"
+        position="fixed" w="200px" h="100vh" bg="green.900"
       >
         <VStack>
           <SimpleGrid columns={3} gap="1px">
@@ -35,7 +36,7 @@ const Main = () => {
           </SimpleGrid>
 
           <Heading as="h1">
-            [ {TX(worldX)} {TY(worldY)} ]
+            [ {TY(worldY)} {TX(worldX)} ]
           </Heading>
           <Heading as="h1">
             Day {count}
@@ -46,6 +47,25 @@ const Main = () => {
           <Heading as="h1">
             Sites {gameStats[GameStat.OpenSite]}
           </Heading>
+          {heroSite.kind? (
+            <Box
+              p={4} bg="green.800"
+            >
+              <Heading as="h1">
+                Kind {heroSite.kind}
+              </Heading>
+              <Heading as="h1">
+                {heroSite.stance}
+              </Heading>
+              <Button
+                colorPalette={"teal"}
+                size="xs" w="4rem" h="2rem" mt="1rem"
+                onClick={() => console.log(heroSite.stance)}
+              >
+                Click
+              </Button>
+            </Box>
+          ): null}
         </VStack>
       </Box>
 

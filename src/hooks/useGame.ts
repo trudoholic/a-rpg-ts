@@ -4,7 +4,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 import {type TGameStatK, GameStat} from "../data/GameStats"
 import {getTile, setTile} from "../data/WorldTiles"
-import {createSite} from "../data/Sites"
+import {createSite, getSite} from "../data/Sites"
 import useShuffleBag from "./useShuffleBag"
 import {Dice, Dice2} from "../data/Utils"
 
@@ -19,6 +19,9 @@ const useGame = () => {
     worldMap,
     sites,
   } = state as IState
+
+  const heroTile = getWorldMap(worldY, worldX)
+  const heroSite = getSite(sites, heroTile.site)
 
   // useEffect(() => {setWorldMap(0, 0, '0')}, [])
 
@@ -81,6 +84,7 @@ const useGame = () => {
     // State:
     count,
     gameStats,
+    heroSite,
     worldX,
     worldY,
     sites,
