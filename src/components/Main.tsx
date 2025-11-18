@@ -15,6 +15,7 @@ const Main = () => {
     gameStats,
     heroSite,
     worldMove,
+    takeSite,
   } = useGame()
 
   const TX = (n:number) => `${n < 0? 'W: ': n > 0? 'E: ' : ''}${Math.abs(n)}`
@@ -23,7 +24,7 @@ const Main = () => {
   return (
     <>
       <Box
-        position="fixed" w="200px" h="100vh" bg="green.900"
+        position="fixed" w="200px" h="100vh" bg="green.900" pt="1rem"
       >
         <VStack>
           <SimpleGrid columns={3} gap="1px">
@@ -60,7 +61,10 @@ const Main = () => {
               <Button
                 colorPalette={"teal"}
                 size="xs" w="4rem" h="2rem" mt="1rem"
-                onClick={() => console.log(heroSite.stance)}
+                onClick={() => {
+                  console.log(heroSite.stance)
+                  takeSite()
+                }}
               >
                 Click
               </Button>

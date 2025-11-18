@@ -80,6 +80,11 @@ const useGame = () => {
       }})
   }
 
+  const takeSite = () => {
+    const site = {...heroSite, stance: "Player"}
+    dispatch({type: Actions.SetSite, payload: {key: site.id, value: site}})
+  }
+
   return {
     // State:
     count,
@@ -93,6 +98,7 @@ const useGame = () => {
     decCount,
     getWorldMap,
     worldMove,
+    takeSite,
   }
 }
 
